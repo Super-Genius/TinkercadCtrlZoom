@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "TinkercadCtrlZoom",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "Add Ctrl key to Tinkercad Mouse Wheel. This alleviates the radical zooming effects when you have a sensitive mouse wheel.  It adds the requirement of the ctrl-key to be pressed before zooming with the mouse wheel",
   "icons": {
     "48": "icons/CtrlZoom.png"
