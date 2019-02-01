@@ -1,11 +1,9 @@
-if (document.readyState === "loading") {
-    document.addEventListener('DOMContentLoaded', CtrlZoom);
-} else {
-    CtrlZoom();
-}
 
-function CtrlZoom() {
-    var Editor3DElement = document.getElementsByClassName("editor__holder");
+// set up the mutation observer
+var observer = new MutationObserver(function (mutations, me) {
+    // `mutations` is an array of mutations that occurred
+    // `me` is the MutationObserver instance
+    var Editor3DElement = document.getElementsByClassName("editor-3d-container");
     if (Editor3DElement.length > 0) {
         console.log(Editor3DElement);
         Editor3DElement[0].onmousewheel = function () {
@@ -15,13 +13,11 @@ function CtrlZoom() {
             Editor3DElement[0].addEventListener('wheel', stopWheel, capture = true);
 
         }
-    } else {
-        console.log("Class NOT Found!: editor__holder");
-
+        console.log("editor-3d-container class found");
+        me.disconnect(); // stop observing
     }
-}
-
-//monitorEvents(window);
+    return;
+});
 
 function stopWheel(e){
     if(!e){ e = window.event; } /* IE7, IE8, Chrome, Safari */
@@ -32,3 +28,10 @@ function stopWheel(e){
     }
 }
 
+console.log("adding observer to document")
+
+// start observing
+observer.observe(document, {
+    childList: true,
+    subtree: true
+});
